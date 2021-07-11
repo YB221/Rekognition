@@ -1,13 +1,16 @@
 from rest_framework import serializers
 from .models import (InputImage, InputVideo, InputEmbed,
                      NameSuggested, SimilarFaceInImage)
-from corelib.utils import ImageFrNetworkChoices
+from corelib.utils import ImageFrNetworkChoices, TextNetworkChoices
 
 
 class ImageFrSerializers(serializers.Serializer):
     file = serializers.ImageField()
     network = serializers.ChoiceField(choices=ImageFrNetworkChoices.choices(), default=ImageFrNetworkChoices.MTCNN)
-
+    
+class TextFrSerializers(serializers.Serializer):
+    file = serializers.ImageField()
+    network = serializers.ChoiceField(choices=ImageFrNetworkChoices.choices(), default=ImageFrNetworkChoices.EAST)
 
 class ImageSerializer(serializers.ModelSerializer):
     class Meta:
